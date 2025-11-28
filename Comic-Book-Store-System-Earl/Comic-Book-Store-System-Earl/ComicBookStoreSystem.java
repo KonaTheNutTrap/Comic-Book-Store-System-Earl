@@ -24,7 +24,7 @@ public class ComicBookStoreSystem {
     // Manager instances for handling comic and inventory data
     private static ComicManager comicManager = new ComicManager("data/comics.txt");
     private static InventoryManager inventoryManager = new InventoryManager("data/stocks.txt");
-    private static PurchaseManager purchaseManager = new PurchaseManager("data/orders.txt", comicManager);
+    private static PurchaseManager purchaseManager = new PurchaseManager("data/orders.txt", comicManager, inventoryManager);
 
     // Admin validation
     private static final String ADMIN_FILE = "data/admin.txt";

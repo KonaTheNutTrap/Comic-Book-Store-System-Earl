@@ -35,11 +35,12 @@ public class PurchaseManager extends EntityManager<Order> {
     }
     
 
-    public PurchaseManager(String filename, ComicManager comicManager) {
-         
+    public PurchaseManager(String filename, ComicManager comicManager, InventoryManager stock) {
+
         super(filename);
         this.comicManager = comicManager;
-         
+        this.stock = stock;
+
     }
 
 
@@ -123,23 +124,42 @@ public class PurchaseManager extends EntityManager<Order> {
             return;
         }
 
-
-        double cartTotal = 0.0;
-      
-
+        // First, check if all items have sufficient stock
+        boolean canCheckout = true;
         for (Order order : cart) {
-            System.out.println("===Receipt===");
-            System.out.print(order.getComic());
-            System.out.println(order.getComicTotal());
-
-          
-            
-
-            cartTotal += order.getComicTotal();
-            System.out.println(order.toString());
-            add(order);
+            int comicId = order.getComic().getId();
+            if (!stock.hasSufficientStock(comicId, order.getQuantity())) {
+                System.out.println("Insufficient stock for " + order.getComic().getTitle() + ". Available: " + stock.getStockQuantity(comicId));
+                canCheckout = false;
+            } else if (stock.getStockQuantity(comicId) == -1) {
+                System.out.println("No stock record found for " + order.getComic().getTitle());
+                canCheckout = false;
+            }
         }
 
-        System.out.println(cartTotal);
+        if (!canCheckout) {
+            System.out.println("Checkout failed due to insufficient stock.");
+            return;
+        }
+
+        // Now, deduct stocks and process orders
+        double cartTotal = 0.0;
+
+        System.out.println("===Receipt===");
+        for (Order order : cart) {
+            int comicId = order.getComic().getId();
+            stock.removeStockFromComic(comicId, order.getQuantity());
+
+            System.out.println("Comic: " + order.getComic().getTitle() + ", Quantity: " + order.getQuantity() + ", Price: $" + order.getComic().getPrice() + ", Total: $" + order.getComicTotal());
+
+            cartTotal += order.getComicTotal();
+            add(order);  // Persist order
+        }
+
+        System.out.println("Grand Total: P" + cartTotal);
+        System.out.println("Purchase completed successfully!");
+
+        // Clear cart after successful checkout
+        cart.clear();
     }
 }
