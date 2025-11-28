@@ -1,1 +1,0 @@
-Order{comic=3,One Punch Man,Boichi,50.0,Action,2027, quantity=3,}

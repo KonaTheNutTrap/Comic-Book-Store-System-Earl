@@ -1,7 +1,8 @@
-//import java.io.*;
+import java.io.*;
 import java.util.*;
 import managers.*;
 import entities.*;
+import utils.FileHandler;
 
 /*
  * Comic Book Store System - Main Application Class
@@ -144,7 +145,9 @@ public class ComicBookStoreSystem {
             spc();
             System.out.println("    [3] Search Comics");
             spc();
-            System.out.println("    [4] Exit");
+            System.out.println("    [4] Order History");
+            spc();
+            System.out.println("    [5] Exit");
             spc();
             ln();
 
@@ -170,7 +173,8 @@ public class ComicBookStoreSystem {
                 case 1: adminMenu(); break;
                 case 2: manageCart(); break;
                 case 3: searchComics(); break;
-                case 4: {
+                case 4: orderHistory(); break;
+                case 5: {
                     System.out.println("Exiting...");
                     return;
                 }
@@ -403,8 +407,6 @@ public class ComicBookStoreSystem {
         // Inventory management loop - continues until user returns to admin menu
         while (true) {
             cls();
-            
-
             line();
             spc();
             System.out.println("  ██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ ██████╗ ██████╗ ██╗   ██╗\r\n" + //
@@ -596,7 +598,7 @@ public class ComicBookStoreSystem {
 
     private static void manageCart() {
         while (true) {
-            
+            cls();
             line();
             spc();
             System.out.println( "   ██████╗ █████╗ ██████╗ ████████╗\r\n" + //
@@ -638,6 +640,7 @@ public class ComicBookStoreSystem {
 
             switch(choice) {
                 case 1:
+                    purchaseManager.displayAvailableComics();
                     System.out.print("Enter Comic ID or Title: ");
                     String comicInput = sc.nextLine().trim();
 
@@ -676,7 +679,52 @@ public class ComicBookStoreSystem {
                 default : System.out.println("Please pick from one of the choices!");
 
             }
+
+            
+            System.out.println("Press enter to continue...");
+            sc.nextLine();
         }
+    }
+
+    /**
+     * Order History - Displays all past orders from saved files.
+     */
+    private static void orderHistory() {
+        File dataDir = new File("data");
+        File[] files = dataDir.listFiles((dir, name) -> name.startsWith("order_") && name.endsWith(".txt"));
+        if (files == null || files.length == 0) {
+            System.out.println("No order history found.");
+            spc();
+            System.out.println("    [1] Return");
+            spc();
+            int choice = sc.nextInt();
+            sc.nextLine();
+            return;
+        }
+
+        // Sort files by order ID (assuming order_1.txt, order_2.txt, etc.)
+        Arrays.sort(files, (f1, f2) -> {
+            int id1 = Integer.parseInt(f1.getName().replace("order_", "").replace(".txt", ""));
+            int id2 = Integer.parseInt(f2.getName().replace("order_", "").replace(".txt", ""));
+            return Integer.compare(id1, id2);
+        });
+
+        for (File file : files) {
+            System.out.println("================================");
+            System.out.println(file.getName());
+            System.out.println("================================");
+            List<String> lines = FileHandler.readFile(file.getPath());
+            for (String line : lines) {
+                System.out.println(line);
+            }
+            System.out.println();
+        }
+
+        spc();
+        System.out.println("    [1] Return");
+        spc();
+        int choice = sc.nextInt();
+        sc.nextLine();
     }
 
     /**

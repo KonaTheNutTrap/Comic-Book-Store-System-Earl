@@ -1,0 +1,6 @@
+Order ID: 2
+Date: 2025-11-28 11:52:50
+Items:
+Comic: One Punch Man, Quantity: 10, Price: P50.0, Total: P500.0
+Comic: Tenpuru, Quantity: 20, Price: P400.0, Total: P8000.0
+Grand Total: P8500.0

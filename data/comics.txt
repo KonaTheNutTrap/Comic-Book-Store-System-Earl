@@ -10,3 +10,5 @@
 10,dasda,dasdas,400.0,action,2009
 11,dadsa,dasdas,4.0,dasd,2009
 12,dadsa,dsadsa,3.0,dasdsa,2009
+13,Tenpuru,Yoshioka Kimitake,400.0,Romance,2024
+14,Konosuba,Natsume Akatsuki,600.0,Comedy,2014
