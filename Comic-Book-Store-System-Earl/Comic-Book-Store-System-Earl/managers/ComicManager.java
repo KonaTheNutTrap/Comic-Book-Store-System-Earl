@@ -218,10 +218,10 @@ public class ComicManager extends EntityManager<Comic> {
      * @param sc Scanner for reading user input
      */
     public void addComic(Scanner sc) {
-        System.out.print("            Enter title: ");
+        System.out.print("                Enter title: ");
         String title = sc.nextLine().trim();
         while (title.isEmpty()) {
-            System.out.println("            Title cannot be empty." + "\n                            ");
+            System.out.println("            Title cannot be empty.");
             System.out.print("            Enter title: ");
             title = sc.nextLine().trim();
         }
@@ -238,29 +238,29 @@ public class ComicManager extends EntityManager<Comic> {
         boolean validPrice = false;
         while (!validPrice) {
             try {
-                System.out.print("            Enter price: ");
+                System.out.print("Enter price: ");
                 price = sc.nextDouble();
                 sc.nextLine(); // Consume the newline after double input
                 if (price <= 0) {
-                    throw new IllegalArgumentException("            Price must be greater than 0");
+                    throw new IllegalArgumentException("Price must be greater than 0");
                 }
                 validPrice = true;
             } catch (Exception e) {
-                System.out.println("            Invalid Input, Please type a proper number.");
+                System.out.println("Invalid Input, Please type a proper number.");
                // System.out.println("Error: " + e.getMessage());
                 sc.nextLine(); // Clear invalid input
             }
         }
 
-        System.out.print("            Enter genre: ");
+        System.out.print("Enter genre: ");
         String genre = sc.nextLine().trim();
         while (genre.isEmpty()) {
-            System.out.println("            Genre cannot be empty.");
-            System.out.print("            Enter genre: ");
+            System.out.println("Genre cannot be empty.");
+            System.out.print("Enter genre: ");
             genre = sc.nextLine().trim();
         }
 
-        System.out.print("            Enter publication year: ");
+        System.out.print("Enter publication year: ");
         int year = -1;
         boolean validYear = false;
         int currentYear = java.time.Year.now().getValue();
@@ -269,7 +269,7 @@ public class ComicManager extends EntityManager<Comic> {
                 year = sc.nextInt();
                 sc.nextLine();
                 if (year < 1800 || year > currentYear + 5) {
-                    throw new IllegalArgumentException("            Year must be between 1800 and " + (currentYear + 5));
+                    throw new IllegalArgumentException("Year must be between 1800 and " + (currentYear + 5));
                 }
                 validYear = true;
             } catch (Exception e) {

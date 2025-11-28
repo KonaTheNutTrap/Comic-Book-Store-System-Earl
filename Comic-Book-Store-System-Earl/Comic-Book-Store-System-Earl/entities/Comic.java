@@ -146,8 +146,7 @@ public class Comic {
      */
     @Override
     public String toString() {
-        return "Id: " + id + " Title: " + title + 
-        "\n Author: " + author + " Price: " + price + " Genre: " + genre + " Year: " + year + "\n";
+        return id + "," + title + "," + author + "," + price + "," + genre + "," + year;
     }
     /**
      * Static factory method to create a Comic instance from a string.
@@ -180,9 +179,7 @@ public class Comic {
      * @return Formatted string for display purposes
      */
     public String display() {
-        return " >>> ID: " + id + "  Title: " + title + "\n  Author: " + author + 
-               "  Price: P" + price + "  Genre: " + genre + 
-               "  Year: " + year + "\n                                                    ";
+        return " >>> ID: " + id + "  Title: " + title + "  Author: " + author + "  Price: P" + price + "  Genre: " + genre + "  Year: " + year;
             
     }
 }

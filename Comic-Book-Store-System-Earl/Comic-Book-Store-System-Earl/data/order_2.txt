@@ -1,0 +1,5 @@
+Order ID: 2
+Date: 2025-11-28 13:54:54
+Items:
+                           Comic: Dr Stone Quantity: 5 Price: P50.0 Total: P250.0
+                                                                                                    Total: P250.0

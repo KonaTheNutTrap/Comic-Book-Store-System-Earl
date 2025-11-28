@@ -149,6 +149,6 @@ public class Stock {
      * @return Formatted string for display purposes
      */
     public String display() {
-        return "Stock ID: " + id + " | Comic ID: " + comicId + " | Quantity: " + quantity;
+        return "Stock ID: " + id + "  Comic ID: " + comicId + "  Quantity: " + quantity;
     }
 }

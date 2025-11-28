@@ -1,3 +1,4 @@
-Id: 1 Title: Heartstone
- Author: Me Price: 500.0 Genre: Action Year: 2008
-
+1,Dr Stone,Boichi,50.0,Science,2009
+2,Vinland Saga,Seth,500.0,Action,2008
+3,Sakamoto Days,Daniel,460.0,Medieval,2007
+4,Black Clover,Yuki,790.0,Shounen,2016
