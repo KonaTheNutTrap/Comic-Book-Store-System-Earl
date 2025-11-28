@@ -67,7 +67,8 @@ public class InventoryManager extends EntityManager<Stock> {
         boolean updating = true;
 
         while (updating) {
-            System.out.println("             Update Stock: Comic ID         " + s.getId() + " ---");
+            System.out.println("             Update Stock: Comic ID         " + s.getId() + " ");
+
             System.out.println("           Select field to update:");
             System.out.println("    [1] Quantity" + "\n                                                    ");
           
@@ -75,7 +76,9 @@ public class InventoryManager extends EntityManager<Stock> {
             
             System.out.println("    [3] Remove Stock" + "\n                                                    ");
             
-            System.out.println("    [4] Finish Updating" + "");
+            System.out.println("    [4] Finish Updating" + "\n");
+
+            System.out.println("           Select field to update:");
 
             int choice = sc.nextInt();
             sc.nextLine(); 
@@ -84,14 +87,14 @@ public class InventoryManager extends EntityManager<Stock> {
                     boolean validQuantity = false;
                     while (!validQuantity) {
                         try {
-                            System.out.print("Enter new quantity: ");
+                            System.out.print("    Enter new quantity: ");
                             int newQuantity = sc.nextInt();
                             sc.nextLine(); 
                             s.setQuantity(newQuantity);
-                            System.out.println("Quantity updated!");
+                            System.out.println("    Quantity updated!");
                             validQuantity = true;
                         } catch (IllegalArgumentException e) {
-                            System.out.println("Error: " + e.getMessage());
+                            System.out.println("    Error: " + e.getMessage());
                         }
                     }
                     break;
@@ -100,14 +103,14 @@ public class InventoryManager extends EntityManager<Stock> {
                     boolean validAdd = false;
                     while (!validAdd) {
                         try {
-                            System.out.print("Enter amount to add: ");
+                            System.out.print("    Enter amount to add: ");
                             int addAmount = sc.nextInt();
                             sc.nextLine(); 
                             s.addStock(addAmount);
-                            System.out.println("Stock added! New quantity: " + s.getQuantity());
+                            System.out.println("    Stock added! New quantity: " + s.getQuantity());
                             validAdd = true;
                         } catch (IllegalArgumentException e) {
-                            System.out.println("Error: " + e.getMessage());
+                            System.out.println("    Error: " + e.getMessage());
                         }
                     }
                     break;
@@ -116,25 +119,25 @@ public class InventoryManager extends EntityManager<Stock> {
                     boolean validRemove = false;
                     while (!validRemove) {
                         try {
-                            System.out.print("Enter amount to remove: ");
+                            System.out.print("    Enter amount to remove: ");
                             int removeAmount = sc.nextInt();
                             sc.nextLine(); 
                             s.removeStock(removeAmount);
-                            System.out.println("Stock removed! New quantity: " + s.getQuantity());
+                            System.out.println("    Stock removed! New quantity: " + s.getQuantity());
                             validRemove = true;
                         } catch (IllegalArgumentException e) {
-                            System.out.println("Error: " + e.getMessage());
+                            System.out.println("    Error: " + e.getMessage());
                         }
                     }
                     break;
 
                 case 4:
                     updating = false;
-                    System.out.println("Update completed!");
+                    System.out.println("        Update completed!");
                     break;
 
                 default:
-                    System.out.println("Invalid option! Please try again.");
+                    System.out.println("        Invalid option! Please try again.");
                     break;
             }
         }
@@ -149,20 +152,20 @@ public class InventoryManager extends EntityManager<Stock> {
      * @param comicManager The ComicManager instance to look up comic details
      */
     public void addStock(Scanner sc, ComicManager comicManager) {
-        System.out.print("Enter comic ID or title: ");
+        System.out.print("    Enter comic ID or title: ");
         String input = sc.nextLine();
 
         // Find comic by ID or title
         entities.Comic comic = comicManager.findByIdOrName(input);
         if (comic == null) {
-            System.out.println("Error: Comic not found with ID or title: " + input);
+            System.out.println("    Error: Comic not found with ID or title: " + input);
             return;
         }
         int comicId = comic.getId();
 
         // Check if stock already exists for this comic
         if (findByComicId(comicId) != null) {
-            System.out.println("Error: Stock record already exists for comic '" + comic.getTitle() + "' (ID " + comicId +
+            System.out.println("    Error: Stock record already exists for comic '" + comic.getTitle() + "' (ID " + comicId +
                              "). Each comic can have only one stock record.");
             return;
         }
@@ -171,11 +174,11 @@ public class InventoryManager extends EntityManager<Stock> {
         int quantity = 0;
         while (!validQuantity) {
             try {
-                System.out.print("Enter initial quantity: ");
+                System.out.print("    Enter initial quantity: ");
                 quantity = sc.nextInt();
                 sc.nextLine(); 
                 if (quantity < 0) {
-                    throw new IllegalArgumentException("Quantity cannot be negative");
+                    throw new IllegalArgumentException("    Quantity cannot be negative");
                 }
                 validQuantity = true;
             } catch (Exception e) {
@@ -186,7 +189,7 @@ public class InventoryManager extends EntityManager<Stock> {
 
         // Create new stock with comicId as stockId and add to collection
         add(new Stock(comicId, quantity));
-        System.out.println("Stock record added!");
+        System.out.println("    Stock record added!");
     }
 
     /**
@@ -197,11 +200,15 @@ public class InventoryManager extends EntityManager<Stock> {
      */
     public void displayAll(ComicManager comicManager) {
         if (getAll().isEmpty()) {
-            System.out.println("No stock records found.");
+            System.out.println("    No stock records found.");
             return;
         }
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
         
-        System.out.println("\n--- All Stock Records ---");
+        System.out.println("                                                                                        ");
+        System.out.println("                                   All Stock Records                             ");
+        System.out.println("                                                                                        ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
         for (Stock stock : getAll()) {
             String comicName = "Unknown Comic";
             // Look up comic name using comic ID
@@ -209,10 +216,10 @@ public class InventoryManager extends EntityManager<Stock> {
             if (comic != null) {
                 comicName = comic.getTitle();
             }
-            System.out.println("Stock ID: " + stock.getId() + 
-                             " | Comic: " + comicName + 
-                             " (ID: " + stock.getComicId() + ")" +
-                             " | Quantity: " + stock.getQuantity());
+            System.out.println("     Stock ID: " + stock.getId() + 
+                             "     Comic: " + comicName + 
+                             "      ID: " + stock.getComicId() + ")" +
+                             "     Quantity: " + stock.getQuantity());
         }
     }
 
@@ -334,8 +341,9 @@ public class InventoryManager extends EntityManager<Stock> {
                 lowStockItems.add(stock);
             }
         }
-
-        System.out.println("                 STOCK DASHBOARD                       ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("                                   STOCK DASHBOARD                       ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
         if (lowStockItems.isEmpty()) {
             System.out.println("         All Comic stock levels are sufficient.");
             return;

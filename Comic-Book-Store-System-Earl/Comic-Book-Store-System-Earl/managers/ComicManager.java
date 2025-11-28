@@ -67,7 +67,7 @@ public class ComicManager extends EntityManager<Comic> {
 
         while (updating) {
             System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
-            System.out.println("                         \n--- Update Comic: " + c.getTitle() + " ---");
+            System.out.println("                         \n    Update Comic: " + c.getTitle() + "    ");
             System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
             System.out.println("                                                                                        ");
             System.out.println("                               Select field to update:" + "\n                            ");
