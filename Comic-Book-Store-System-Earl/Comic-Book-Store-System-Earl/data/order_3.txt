@@ -1,5 +1,0 @@
-Order ID: 3
-Date: 2025-11-28 04:18:07
-Items:
-Comic: Jujutsu Kaisen, Quantity: 4, Price: P5.0, Total: P20.0
-Grand Total: P20.0

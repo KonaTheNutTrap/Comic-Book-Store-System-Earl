@@ -1,14 +1,45 @@
-1,Naruto,Kishimoto,200.0,Action,2009
-2,Jujutsu Kaisen,1,5.0,Shounen,2026
-3,One Punch Man,Boichi,50.0,Action,2027
-4,Reincarnated as a slime,dadad,500.0,isekai,2007
-5,hello,1312,300.0,action,2007
-6,Tensei,Jango,50.0,Action,2005
-7,Marley,David,50.0,Action,2020
-8,dadasd,dasdas,400.0,dasdsa,2002
-9,dasdsq,dasdsa,500.0,action,2009
-10,dasda,dasdas,400.0,action,2009
-11,dadsa,dasdas,4.0,dasd,2009
-12,dadsa,dsadsa,3.0,dasdsa,2009
-13,Tenpuru,Yoshioka Kimitake,400.0,Romance,2024
-14,Konosuba,Natsume Akatsuki,600.0,Comedy,2014
+Id: 1 Title: Naruto
+ Author: Kishimoto Price: 200.0 Genre: Action Year: 2009
+
+Id: 2 Title: Jujutsu Kaisen
+ Author: 1 Price: 5.0 Genre: Shounen Year: 2026
+
+Id: 3 Title: One Punch Man
+ Author: Boichi Price: 50.0 Genre: Action Year: 2027
+
+Id: 4 Title: Reincarnated as a slime
+ Author: dadad Price: 500.0 Genre: isekai Year: 2007
+
+Id: 5 Title: hello
+ Author: 1312 Price: 300.0 Genre: action Year: 2007
+
+Id: 6 Title: Tensei
+ Author: Jango Price: 50.0 Genre: Action Year: 2005
+
+Id: 7 Title: Marley
+ Author: David Price: 50.0 Genre: Action Year: 2020
+
+Id: 8 Title: dadasd
+ Author: dasdas Price: 400.0 Genre: dasdsa Year: 2002
+
+Id: 9 Title: dasdsq
+ Author: dasdsa Price: 500.0 Genre: action Year: 2009
+
+Id: 10 Title: dasda
+ Author: dasdas Price: 400.0 Genre: action Year: 2009
+
+Id: 11 Title: dadsa
+ Author: dasdas Price: 4.0 Genre: dasd Year: 2009
+
+Id: 12 Title: dadsa
+ Author: dsadsa Price: 3.0 Genre: dasdsa Year: 2009
+
+Id: 13 Title: Tenpuru
+ Author: Yoshioka Kimitake Price: 400.0 Genre: Romance Year: 2024
+
+Id: 14 Title: Konosuba
+ Author: Natsume Akatsuki Price: 600.0 Genre: Comedy Year: 2014
+
+Id: 15 Title: Rising of the Shield Hero
+ Author: Hiroshi Price: 50.0 Genre: Isekai Year: 2009
+

@@ -39,7 +39,8 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "comic=" + comic + ", quantity=" + quantity + ",}";
+        //return "Order{" + "comic=" + comic + ", quantity=" + quantity + ",}";
+        return  comic + " Quantity: " + quantity;
     }
 
 }

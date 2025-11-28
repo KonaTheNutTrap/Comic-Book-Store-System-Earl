@@ -146,9 +146,9 @@ public class Comic {
      */
     @Override
     public String toString() {
-        return id + "," + title + "," + author + "," + price + "," + genre + "," + year;
+        return "Id: " + id + " Title: " + title + 
+        "\n Author: " + author + " Price: " + price + " Genre: " + genre + " Year: " + year + "\n";
     }
-
     /**
      * Static factory method to create a Comic instance from a string.
      * This method parses a comma-separated string to reconstruct a Comic object.

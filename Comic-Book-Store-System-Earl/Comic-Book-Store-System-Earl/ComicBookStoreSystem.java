@@ -66,7 +66,9 @@ public class ComicBookStoreSystem {
          System.out.println("═══════════════════════════════════════════════════════════════════════════════════════");
          System.out.println("                                                                                     ");
          System.out.println("                                                                                     ");
-         System.out.println("                                                                                     ");
+         System.out.println("                        user: admin        pass: 12345                                  ");
+         spc();
+         spc();
 
         System.out.println("Please log in your Employee Account");
         System.out.println("                                                                                     ");
@@ -633,26 +635,28 @@ public class ComicBookStoreSystem {
                     sc.nextLine();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter a valid number.");
+                    System.out.println("    Invalid input. Please enter a valid number.");
                     sc.nextLine(); // clear invalid input
                 }
             }
 
             switch(choice) {
                 case 1:
+                    cls();
                     purchaseManager.displayAvailableComics();
-                    System.out.print("Enter Comic ID or Title: ");
+                    System.out.print("     Enter Comic ID or Title: ");
                     String comicInput = sc.nextLine().trim();
+                    spc();
 
                     int qty = -1;
                     while (true) {
                         try {
-                            System.out.print("Enter the Amount/Quantity: ");
+                            System.out.print("    How much would you like to buy?: ");
                             qty = sc.nextInt();
                             sc.nextLine();
                             break;
                         } catch (InputMismatchException e) {
-                            System.out.println("Invalid input. Please enter a valid number.");
+                            System.out.println("    Invalid input. Please enter a valid number.");
                             sc.nextLine(); // clear invalid input
                         }
                     }
@@ -660,10 +664,13 @@ public class ComicBookStoreSystem {
                     purchaseManager.addOrder(comicInput, qty);
                     break;
 
-                case 2: purchaseManager.viewOrders();
+                case 2: 
+                    cls();
+                    purchaseManager.viewOrders();
                     break;
 
                 case 3:
+                    cls();
                     purchaseManager.viewOrders();
                     System.out.print("Enter the ID or title of the comic you would like to remove: ");
                     String c = sc.nextLine();
@@ -710,9 +717,9 @@ public class ComicBookStoreSystem {
         });
 
         for (File file : files) {
-            System.out.println("================================");
-            System.out.println(file.getName());
-            System.out.println("================================");
+            ln();
+            System.out.println("                      " + file.getName());
+            ln();
             List<String> lines = FileHandler.readFile(file.getPath());
             for (String line : lines) {
                 System.out.println(line);
@@ -721,7 +728,7 @@ public class ComicBookStoreSystem {
         }
 
         spc();
-        System.out.println("    [1] Return");
+        System.out.println("      [1] Return");
         spc();
         int choice = sc.nextInt();
         sc.nextLine();

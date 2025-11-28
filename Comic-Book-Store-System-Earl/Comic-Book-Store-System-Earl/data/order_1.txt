@@ -1,5 +1,6 @@
 Order ID: 1
-Date: 2025-11-28 11:52:26
+Date: 2025-11-28 11:51:42
 Items:
-Comic: Jujutsu Kaisen, Quantity: 10, Price: P5.0, Total: P50.0
-Grand Total: P50.0
+Comic: Naruto Quantity: 1 Price: P200.0 Total: P200.0
+                                                                                      Comic: Tenpuru Quantity: 3 Price: P400.0 Total: P1200.0
+                                                                                                    Total: P1400.0

@@ -77,21 +77,23 @@ public class PurchaseManager extends EntityManager<Order> {
         comic = comicManager.findByIdOrName(comicInput);
 
         if (comic == null) {
-            System.out.println("Comic not found!");
+            System.out.println("          Comic not found!");
             return;
         }
 
         try {
             Order newOrder = new Order(comic, quantity);
             cart.add(newOrder);
-            System.out.println("Added to cart!");
+            System.out.println("          Item was successfully added to cart!");
         } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("              Error: " + e.getMessage());
         }
     }
 
     public void displayAvailableComics() {
-        System.out.println("Available Comics (with stock > 0):");
+         System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("                                   AVAILABLE COMICS               " + 
+                     "\n ─────────────────────────────────────────────────────────────────────────────────────");
         List<Comic> comics = comicManager.getAll();
         boolean found = false;
         for (Comic comic : comics) {
@@ -115,15 +117,17 @@ public class PurchaseManager extends EntityManager<Order> {
 
 
     public void viewOrders() {
-        System.out.println("==Your Shopping Cart==");
+        System.out.println("═══════════════════════════════════════════════════════════════════════════════════════");
+        System.out.println("                                    Shopping Cart");
+        System.out.println("═══════════════════════════════════════════════════════════════════════════════════════");
         if (cart.isEmpty()) {
-            System.out.println("Cart is currently empty");
+            System.out.println("                             Cart is currently empty");
             return;
         }
 
         for (Order order : cart) {
             System.out.println(order.toString());
-            System.out.println("================================");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
         }
 
 
@@ -135,7 +139,7 @@ public class PurchaseManager extends EntityManager<Order> {
     public void removeOrder(String c) {
 
         if (cart.isEmpty()) {
-            System.out.println("There's nothing to remove because the cart is empty.");
+            System.out.println("          There's nothing to remove because the cart is empty.      ");
             return;
         } else {
 
@@ -149,9 +153,9 @@ public class PurchaseManager extends EntityManager<Order> {
         }
 
         if (removed) {
-            System.out.println("Item removed from cart!");
+            System.out.println("                        Item has succesfully been removed from Cart!              ");
         } else {
-            System.out.println("Item not found in cart!");
+            System.out.println("                                    Item not found in cart!                        ");
         }
 
         }
@@ -162,7 +166,7 @@ public class PurchaseManager extends EntityManager<Order> {
     public void checkout() {
 
         if (cart.isEmpty()) {
-            System.out.println("Cart is empty. Nothing to checkout.");
+            System.out.println("                                  Cart is empty. Nothing to checkout.");
             return;
         }
 
@@ -171,16 +175,16 @@ public class PurchaseManager extends EntityManager<Order> {
         for (Order order : cart) {
             int comicId = order.getComic().getId();
             if (!stock.hasSufficientStock(comicId, order.getQuantity())) {
-                System.out.println("Insufficient stock for " + order.getComic().getTitle() + ". Available: " + stock.getStockQuantity(comicId));
+                System.out.println("                                    Insufficient stock for " + order.getComic().getTitle() + ". Available: " + stock.getStockQuantity(comicId));
                 canCheckout = false;
             } else if (stock.getStockQuantity(comicId) == -1) {
-                System.out.println("No stock record found for " + order.getComic().getTitle());
+                System.out.println("                                    No stock record found for " + order.getComic().getTitle());
                 canCheckout = false;
             }
         }
 
         if (!canCheckout) {
-            System.out.println("Checkout failed due to insufficient stock.");
+            System.out.println("                                    Checkout failed due to insufficient stock.");
             return;
         }
 
@@ -191,8 +195,10 @@ public class PurchaseManager extends EntityManager<Order> {
 
         // Now, deduct stocks and process orders
         double cartTotal = 0.0;
-
-        System.out.println("===Receipt===");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("                                      OFFICIAL RECEIPT");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────");
+        
         StringBuilder receipt = new StringBuilder();
         receipt.append("Order ID: ").append(orderId).append("\n");
         receipt.append("Date: ").append(now.format(formatter)).append("\n");
@@ -201,22 +207,22 @@ public class PurchaseManager extends EntityManager<Order> {
             int comicId = order.getComic().getId();
             stock.removeStockFromComic(comicId, order.getQuantity());
 
-            String itemLine = "Comic: " + order.getComic().getTitle() + ", Quantity: " + order.getQuantity() + ", Price: P" + order.getComic().getPrice() + ", Total: P" + order.getComicTotal() + "\n";
+            String itemLine = "                           Comic: " + order.getComic().getTitle() + " Quantity: " + order.getQuantity() + " Price: P" + order.getComic().getPrice() + " Total: P" + order.getComicTotal() + "\n                                                                                      ";
             System.out.println(itemLine.trim());
             receipt.append(itemLine);
 
             cartTotal += order.getComicTotal();
         }
 
-        System.out.println("Grand Total: P" + cartTotal);
-        receipt.append("Grand Total: P").append(cartTotal).append("\n");
+        System.out.println("                           Your Total is: P" + cartTotal);
+        receipt.append("              Total: P").append(cartTotal).append("\n");
 
         // Save to file
         String filename = "data/order_" + orderId + ".txt";
         List<String> lines = Arrays.asList(receipt.toString().split("\n"));
         FileHandler.writeFile(filename, lines);
 
-        System.out.println("Purchase completed successfully! Receipt saved as order_" + orderId + ".txt");
+        System.out.println("              " + "\n Purchase completed successfully! Receipt saved as order_" + orderId + ".txt");
 
         // Clear cart after successful checkout
         cart.clear();
