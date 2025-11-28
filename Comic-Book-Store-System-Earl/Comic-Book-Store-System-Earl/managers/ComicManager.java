@@ -226,11 +226,11 @@ public class ComicManager extends EntityManager<Comic> {
             title = sc.nextLine().trim();
         }
 
-        System.out.print("            Enter author: ");
+        System.out.print("                Enter author: ");
         String author = sc.nextLine().trim();
         while (author.isEmpty()) {
             System.out.println("            Author cannot be empty.");
-            System.out.print("            Enter author: ");
+            System.out.print("                Enter author: ");
             author = sc.nextLine().trim();
         }
 
@@ -238,7 +238,7 @@ public class ComicManager extends EntityManager<Comic> {
         boolean validPrice = false;
         while (!validPrice) {
             try {
-                System.out.print("Enter price: ");
+                System.out.print("                Enter price: ");
                 price = sc.nextDouble();
                 sc.nextLine(); // Consume the newline after double input
                 if (price <= 0) {
@@ -252,7 +252,7 @@ public class ComicManager extends EntityManager<Comic> {
             }
         }
 
-        System.out.print("Enter genre: ");
+        System.out.print("                Enter genre: ");
         String genre = sc.nextLine().trim();
         while (genre.isEmpty()) {
             System.out.println("Genre cannot be empty.");
@@ -260,7 +260,7 @@ public class ComicManager extends EntityManager<Comic> {
             genre = sc.nextLine().trim();
         }
 
-        System.out.print("Enter publication year: ");
+        System.out.print("                Enter publication year: ");
         int year = -1;
         boolean validYear = false;
         int currentYear = java.time.Year.now().getValue();
