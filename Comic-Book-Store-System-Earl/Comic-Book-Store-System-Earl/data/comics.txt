@@ -1,0 +1,12 @@
+1,Naruto,Kishimoto,200.0,Action,2009
+2,Jujutsu Kaisen,1,5.0,Shounen,2026
+3,One Punch Man,Boichi,50.0,Action,2027
+4,Reincarnated as a slime,dadad,500.0,isekai,2007
+5,hello,1312,300.0,action,2007
+6,Tensei,Jango,50.0,Action,2005
+7,Marley,David,50.0,Action,2020
+8,dadasd,dasdas,400.0,dasdsa,2002
+9,dasdsq,dasdsa,500.0,action,2009
+10,dasda,dasdas,400.0,action,2009
+11,dadsa,dasdas,4.0,dasd,2009
+12,dadsa,dsadsa,3.0,dasdsa,2009
